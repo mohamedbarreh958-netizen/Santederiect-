@@ -1,0 +1,223 @@
+{
+  "entities": {
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Rendez-vous et admission médicale d'un patient",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifiant unique du rendez-vous"
+        },
+        "passId": {
+          "type": "string",
+          "description": "Numéro du Pass Médical virtuel"
+        },
+        "patientName": {
+          "type": "string",
+          "description": "Nom complet du patient"
+        },
+        "age": {
+          "type": "number",
+          "description": "Âge du patient"
+        },
+        "gender": {
+          "type": "string",
+          "description": "Genre du patient"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Numéro de téléphone de contact"
+        },
+        "secu": {
+          "type": "string",
+          "description": "Numéro de sécurité sociale"
+        },
+        "blood": {
+          "type": "string",
+          "description": "Groupe sanguin"
+        },
+        "allergies": {
+          "type": "array",
+          "description": "Liste des allergies connues"
+        },
+        "treatments": {
+          "type": "array",
+          "description": "Traitements en cours"
+        },
+        "hospital": {
+          "type": "string",
+          "description": "Établissement de soins sélectionné"
+        },
+        "specialty": {
+          "type": "string",
+          "description": "Spécialité médicale"
+        },
+        "doctor": {
+          "type": "string",
+          "description": "Praticien référent"
+        },
+        "time": {
+          "type": "string",
+          "description": "Heure du rendez-vous"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date de consultation"
+        },
+        "mode": {
+          "type": "string",
+          "description": "Mode de consultation (presentiel ou teleconsult)"
+        },
+        "motif": {
+          "type": "string",
+          "description": "Motif de consultation"
+        },
+        "status": {
+          "type": "string",
+          "description": "Statut (confirmed, waiting, inprogress, completed, cancelled)"
+        },
+        "arrivedAt": {
+          "type": "string",
+          "description": "Heure de pointage au guichet"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Notes d'équipe médicale"
+        }
+      },
+      "required": ["patientName", "hospital", "doctor", "date", "time", "status"]
+    },
+    "DoctorAbsence": {
+      "title": "DoctorAbsence",
+      "description": "Déclaration d'absence et remplacement d'un médecin",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifiant unique de l'absence"
+        },
+        "doctorName": {
+          "type": "string",
+          "description": "Nom du médecin concerné"
+        },
+        "specialty": {
+          "type": "string",
+          "description": "Spécialité du praticien"
+        },
+        "hospital": {
+          "type": "string",
+          "description": "Établissement de rattachement"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type d'absence (Congé annuel, formation, arrêt maladie...)"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Date de début"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "Date de fin"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Motif et détails"
+        },
+        "hasSubstitute": {
+          "type": "boolean",
+          "description": "Indique si un médecin remplaçant est désigné"
+        },
+        "substituteName": {
+          "type": "string",
+          "description": "Nom du médecin remplaçant"
+        },
+        "substitutePhone": {
+          "type": "string",
+          "description": "Téléphone du remplaçant"
+        },
+        "notifyPatients": {
+          "type": "boolean",
+          "description": "Alerter les patients par SMS"
+        },
+        "impactedAppointmentsCount": {
+          "type": "number",
+          "description": "Nombre de créneaux impactés"
+        },
+        "status": {
+          "type": "string",
+          "description": "Statut de l'absence (active, upcoming, ended)"
+        }
+      },
+      "required": ["doctorName", "startDate", "endDate", "type", "status"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Fiche médicale et préférences du patient",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nom complet du patient"
+        },
+        "blood": {
+          "type": "string",
+          "description": "Groupe sanguin"
+        },
+        "weight": {
+          "type": "number",
+          "description": "Poids en kg"
+        },
+        "height": {
+          "type": "number",
+          "description": "Taille en cm"
+        },
+        "secu": {
+          "type": "string",
+          "description": "Numéro de sécurité sociale"
+        },
+        "allergies": {
+          "type": "array",
+          "description": "Allergies"
+        },
+        "treatments": {
+          "type": "array",
+          "description": "Traitements"
+        },
+        "iceName": {
+          "type": "string",
+          "description": "Contact d'urgence"
+        },
+        "icePhone": {
+          "type": "string",
+          "description": "Téléphone d'urgence"
+        },
+        "favorites": {
+          "type": "array",
+          "description": "Établissements mis en favoris"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Rendez-vous et admissions des patients"
+    },
+    "/doctorAbsences/{absenceId}": {
+      "schema": "DoctorAbsence",
+      "description": "Absences et remplacements des docteurs de l'hôpital"
+    },
+    "/userProfiles/{profileId}": {
+      "schema": "UserProfile",
+      "description": "Dossier patient et paramètres"
+    },
+    "/test/{testId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Connexion test endpoint"
+    }
+  }
+}

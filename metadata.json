@@ -1,0 +1,11 @@
+{
+  "name": "SanteDirect",
+  "description": "Plateforme médicale futuriste d'accès aux soins d'urgence, géolocalisation des hôpitaux, prise de rendez-vous et dossier de santé sécurisé avec esthétique Chrome.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
+
